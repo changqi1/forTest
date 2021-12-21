@@ -21,41 +21,41 @@ DeepCTR模型单机版测试效果：
 
 <table>
   <th></th>
-  <th style="text-align:center">单轮耗时 ms</th>
-  <th style="text-align:center">吞吐提升</th>
+  <th>单轮耗时 ms</th>
+  <th>吞吐提升</th>
   <tr>
-    <td colspan = "3" style="text-align:center">不开启Pipeline，对比组试验</td>
+    <td colspan = "3">不开启Pipeline，对比组试验</td>
   </tr>
   <tr>
-    <td style="text-align:center">batch_size = 256,  no pipeline</td>
-    <td style="text-align:center">293</td>
-    <td style="text-align:center">-</td>
+    <td>batch_size = 256,  no pipeline</td>
+    <td>293</td>
+    <td>-</td>
   </tr>
   <tr>
-    <td colspan = "3" style="text-align:center">开启Pipeline，2路Pipeline</td>
+    <td colspan = "3">开启Pipeline，2路Pipeline</td>
   </tr>
   <tr>
-    <td style="text-align:center">batch_size/pipe = 128，2 pipeline</td>
-    <td style="text-align:center">220</td>
-    <td style="text-align:center">+30%</td>
+    <td>batch_size/pipe = 128，2 pipeline</td>
+    <td>220</td>
+    <td>+30%</td>
   </tr>
   <tr>
-    <td style="text-align:center">batch_size/pipe = 256，2 pipeline</td>
-    <td style="text-align:center">503</td>
-    <td style="text-align:center">+17%</td>
+    <td>batch_size/pipe = 256，2 pipeline</td>
+    <td>503</td>
+    <td>+17%</td>
   </tr>
   <tr>
-    <td colspan = "3" style="text-align:center">开启Pipeline，4路Pipeline</td>
+    <td colspan = "3">开启Pipeline，4路Pipeline</td>
   </tr>
   <tr>
-    <td style="text-align:center">batch_size/pipe = 64，4 pipeline</td>
-    <td style="text-align:center">250</td>
-    <td style="text-align:center">+17%</td>
+    <td>batch_size/pipe = 64，4 pipeline</td>
+    <td>250</td>
+    <td>+17%</td>
   </tr>
   <tr>
-    <td style="text-align:center">batch_size/pipe = 256，4 pipeline</td>
-    <td style="text-align:center">1108</td>
-    <td style="text-align:center">+8%</td>
+    <td>batch_size/pipe = 256，4 pipeline</td>
+    <td>1108</td>
+    <td>+8%</td>
   </tr>
 </table>
 

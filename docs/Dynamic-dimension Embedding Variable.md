@@ -83,20 +83,20 @@ def embedding_lookup(
 
 对于每一个特征有两个统计量，分别是累积特征频次freq_acc以及特征在当前时段的出现速度freq_current_speed，freq_acc和freq_current_speed都会被初始化为0，freq_acc平时不更新，会在特定的step根据一定的规则进行更新，而freq_current_speed则会随着特征被访问而更新，特征每被访问一次freq_current_speed就会+1，然后会在特定的step被置为0。
 目前使用的更新freq_acc的规则如下：
-$$freq\_acc = \beta*freq\_acc + (1.0-\beta)*freq\_current\_speed$$, 其中 $$0\le\beta\le1$$，$$\beta$$可以设置为0.9。
+$freq\_acc = \beta*freq\_acc + (1.0-\beta)*freq\_current\_speed$$, 其中 $$0\le\beta\le1$$，$$\beta$可以设置为0.9。
 ​
 
 在获得每个特征的blocknum时，首先根据freq_acc和freq_current_speed计算每个特征对应的freq，公式如下：
 
 
-$$freq=\frac{\beta*freq\_acc + (1.0-\beta)*freq\_current\_speed}{(1.0-\beta^t)}$$ ， t是freq_acc被reset的次数
+$freq=\frac{\beta*freq\_acc + (1.0-\beta)*freq\_current\_speed}{(1.0-\beta^t)}$ ， t是freq_acc被reset的次数
 
 
 在得到每一个特征的freq后，需要计算不同的blocknum数量对应的阈值：具体步骤如下：
 
 1. 对所有freq_acc超过一个阈值的特征进行ranking（该阈值可以设置为0.000001），超过阈值的特征的数量记为total_rank。
-1. 考虑到推荐场景中的特征频次分布符合幂律分布，我们给出一个指数分布来划分阈值空间，即给出一个p，得到一个$$[p^0,p^1,....,p^{n+1}]$$，其中$$1<p$$，n是blocknum的数量。
-1. 对于每一个$$k\in[1,....,n+1]$$，计算$$rank =(p^{n+1-k}-p^0)/(p^{n+1}-p^0) * total\_rank$$，然后根据freq_acc选出top-rank个freq_acc, 这之中的最小值即是第i个block对应的阈值。
+1. 考虑到推荐场景中的特征频次分布符合幂律分布，我们给出一个指数分布来划分阈值空间，即给出一个p，得到一个$[p^0,p^1,....,p^{n+1}]$，其中$1<p$，n是blocknum的数量。
+1. 对于每一个$k\in[1,....,n+1]$，计算$rank =(p^{n+1-k}-p^0)/(p^{n+1}-p^0) * total\_rank$，然后根据freq_acc选出top-rank个freq_acc, 这之中的最小值即是第i个block对应的阈值。
 1. 对于每一个特征，将freq与阈值比较即可决定每个对应的embedding的长度。
 
 

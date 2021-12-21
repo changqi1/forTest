@@ -38,7 +38,7 @@ method ***WorkQueue.take()***
 
 ### input_dataset
 
-method **WorkQueue.input_dataset()**
+method ***WorkQueue.input_dataset()***
 
 | 作用           | 返回一个 Dataset，Dataset的每个元素为一个工作项 |
 | -------------- | ----------------------------------------------- |
@@ -46,7 +46,7 @@ method **WorkQueue.input_dataset()**
 | **参数**       | 无参数                                          |
 
 ### input_producer
-method **WorkQueue.input_producer()**​
+method ***WorkQueue.input_producer()**​*
 
 | 作用           | 全局工作队列在本地的代理队列，为 Reader 类 Op 使用。 |
 | -------------- | ---------------------------------------------------- |
@@ -54,7 +54,7 @@ method **WorkQueue.input_producer()**​
 | **参数**       | 无参数                                               |
 
 ### add_summary
-method **WorkQueue.add_summary()**
+method ***WorkQueue.add_summary()***
 
 | 作用           | 调用后将会在 tensorboard 中显示 work queue 的水位信息。 |
 | -------------- | ------------------------------------------------------- |
