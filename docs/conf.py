@@ -21,7 +21,7 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 '''
 
 # -- Project information -----------------------------------------------------
-project = 'fortest'
+project = 'DeepRec'
 author = 'Alibaba Group Holding Limited'
 copyright = '2021 Alibaba Group Holding Limited'  # pylint: disable=redefined-builtin
 release = 'latest'

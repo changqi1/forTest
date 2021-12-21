@@ -25,11 +25,10 @@ Bloom Filter的优点包括：
 ![](img/BloomFilter/img_2.png)
 
 另外，当用户给定错误率p时以及特征数量n时，m和k可以通过如下计算得到：
-$$
-m = -\frac{n\ln_{}{p}}{(\ln_{}{2})^2 } \\
-\\
-  k = \frac{m}{n}\ln_{}{2}
-$$
+
+$m = -\frac{n\ln_{}{p}}{(\ln_{}{2})^2 }$
+
+$k = \frac{m}{n}\ln_{}{2}$
 
 ### 使用方法
 ```python
