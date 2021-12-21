@@ -1,7 +1,7 @@
 # NVIDIA TF32
 ## TF32 简介
 TensorFloat-32，是 Nvidia 在 Ampere 架构的 GPU 上推出的专门运用于 TensorCore 的一种计算格式。其与其他常用数据格式的比较：
-![](img/NVIDIA TF32/img_1.png)
+![img_1.png](img/NVIDIA TF32/img_1.png)
 
 
 在 A100 上，使用 TF32 进行矩阵乘法运算可以比 V100 上使用 FP32 CUDA Core 运算提升 8x 的速度。
@@ -33,7 +33,7 @@ export NVIDIA_TF32_OVERRIDE=0
 
 ## TF32 对精度影响
 Nvidia 对比了 FP32 与 TF32 情况下，各个知名模型的精度差异，TF32 对精度基本无影响：
-![](img/NVIDIA TF32/img_2.png)
+![img_2.png](img/NVIDIA TF32/img_2.png)
 
 ## 更多信息
 

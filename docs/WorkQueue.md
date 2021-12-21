@@ -46,7 +46,7 @@ method ***WorkQueue.input_dataset()***
 | **参数**       | 无参数                                          |
 
 ### input_producer
-method ***WorkQueue.input_producer()**​*
+method ***WorkQueue.input_producer()***
 
 | 作用           | 全局工作队列在本地的代理队列，为 Reader 类 Op 使用。 |
 | -------------- | ---------------------------------------------------- |

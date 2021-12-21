@@ -76,16 +76,10 @@ with tf.train.MonitoredTrainingSession(config=config,
 - Thread(s) per core: 2
 - Memory: 128G
 
-<table>
-	<th style="text-align:center" rowspan="3">DLRM</th>
-	<th style="text-align:center">case</th>
-	<th style="text-align:center">global steps/sec</th>
-	<tr>
-		<td style="text-align:center">w/o smart stage</td>
-		<td style="text-align:center">201 (baseline)</td>
-	</tr>
-	<tr>
-		<td style="text-align:center">w/ smart stage</td>
-		<td style="text-align:center">212 (+ 1.05x)</td>
-	</tr>
-</table>
+|      |      case       | global steps/sec |
+| :--: | :-------------: | :--------------: |
+| DLRM | w/o smart stage |  201 (baseline)  |
+| DLRM | w/o smart stage |  212 (+ 1.05x)   |
+
+
+

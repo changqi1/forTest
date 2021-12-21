@@ -6,7 +6,7 @@
 我们在图优化阶段，自动识别复制子图并且生成聚合子图，自动将用户的子图复制N份，N个MicroBatch Size（N个Micro batch size之和等同于单个mini batch）同时训练，多个MicroBatch对梯度进行累加后更新至variable，因此不会对训练收敛性产生影响。
 ​
 
-![](img/Auto Micro Batch/img_1.png)
+![img_1.png](img/Auto Micro Batch/img_1.png)
 ## 使用方法
 AutoMicroBatch功能依赖于用户开启图优化的选项，需要注意的是，如果用户配置batch_size=1024，配置micro_batch_num=2，那么实际等价于用户之前使用batch_size=2048训练的收敛性。如果用户使用前的batch_size=512，使用large_batch_size功能配置micro_batch_num=4，那么在不改变收敛性的情况下，建议用户同时修改batch_size=128，用户接口如下:
 
@@ -19,45 +19,26 @@ config.graph_options.optimizer_options.micro_batch_num = 4
 
 DeepCTR模型单机版测试效果：
 
-<table>
-  <th></th>
-  <th>单轮耗时 ms</th>
-  <th>吞吐提升</th>
-  <tr>
-    <td colspan = "3">不开启Pipeline，对比组试验</td>
-  </tr>
-  <tr>
-    <td>batch_size = 256,  no pipeline</td>
-    <td>293</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td colspan = "3">开启Pipeline，2路Pipeline</td>
-  </tr>
-  <tr>
-    <td>batch_size/pipe = 128，2 pipeline</td>
-    <td>220</td>
-    <td>+30%</td>
-  </tr>
-  <tr>
-    <td>batch_size/pipe = 256，2 pipeline</td>
-    <td>503</td>
-    <td>+17%</td>
-  </tr>
-  <tr>
-    <td colspan = "3">开启Pipeline，4路Pipeline</td>
-  </tr>
-  <tr>
-    <td>batch_size/pipe = 64，4 pipeline</td>
-    <td>250</td>
-    <td>+17%</td>
-  </tr>
-  <tr>
-    <td>batch_size/pipe = 256，4 pipeline</td>
-    <td>1108</td>
-    <td>+8%</td>
-  </tr>
-</table>
+不开启Pipeline，对比组试验
+
+|                                | 单轮耗时 ms | 吞吐提升 |
+| :------------------------------: | :---------: | :--------: |
+| batch_size = 256,  no pipeline |     293     | -        |
+
+开启Pipeline，2路Pipeline
+
+|                                   | 单轮耗时 ms | 吞吐提升 |
+| :---------------------------------: | :---------: | :--------: |
+| batch_size/pipe = 128，2 pipeline |     220     | +30%     |
+| batch_size/pipe = 256，2 pipeline |     503     | +17%     |
+
+开启Pipeline，4路Pipeline
+
+|                                   | 单轮耗时 ms | 吞吐提升 |
+| :---------------------------------: | :---------: | :--------: |
+| batch_size/pipe = 64，4 pipeline  |     250     | +17%     |
+| batch_size/pipe = 256，4 pipeline |    1108     | +8%      |
+
 
 
 
