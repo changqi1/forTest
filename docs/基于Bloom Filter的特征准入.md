@@ -28,7 +28,7 @@ Bloom Filter的优点包括：
 $$
 m = -\frac{n\ln_{}{p}}{(\ln_{}{2})^2 } \\
 \\
-k = \frac{m}{n}\ln_{}{2}
+  k = \frac{m}{n}\ln_{}{2}
 $$
 
 ### 使用方法
