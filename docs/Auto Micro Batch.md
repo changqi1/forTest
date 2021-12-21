@@ -6,7 +6,7 @@
 我们在图优化阶段，自动识别复制子图并且生成聚合子图，自动将用户的子图复制N份，N个MicroBatch Size（N个Micro batch size之和等同于单个mini batch）同时训练，多个MicroBatch对梯度进行累加后更新至variable，因此不会对训练收敛性产生影响。
 ​
 
-![](./img/Auto Micro Batch/img_1.png)
+![](img/Auto Micro Batch/img_1.png)
 ## 使用方法
 AutoMicroBatch功能依赖于用户开启图优化的选项，需要注意的是，如果用户配置batch_size=1024，配置micro_batch_num=2，那么实际等价于用户之前使用batch_size=2048训练的收敛性。如果用户使用前的batch_size=512，使用large_batch_size功能配置micro_batch_num=4，那么在不改变收敛性的情况下，建议用户同时修改batch_size=128，用户接口如下:
 
