@@ -1,22 +1,21 @@
-
 Contents
 --------
 
 .. toctree::
 
-    Auto Micro Batch
-    Dynamic-dimension Embedding Variable
-    Fused Embedding
-    StarServer
-    GRPC++
-    Incremental Checkpoint
-    Adaptive Embedding
-    WorkQueue
-    AdamAsync Optimizer
-    AdagradDecay Optimizer
-    Embedding Variable
-    Multi-Hash Variable
-    基于Bloom Filter的特征准入
-    Smart Stage
-    TensorPoolAllocator
-    NVIDIA TF32
+    Auto Micro Batch.md
+    Dynamic-dimension Embedding Variable.md
+    Fused Embedding.md
+    StarServer.md
+    GRPC++.md
+    Incremental Checkpoint.md
+    Adaptive Embedding.md
+    WorkQueue.md
+    AdamAsync Optimizer.md
+    AdagradDecay Optimizer.md
+    Embedding Variable.md
+    Multi-Hash Variable.md
+    基于Bloom Filter的特征准入.md
+    Smart Stage.md
+    TensorPoolAllocator.md
+    NVIDIA TF32.md
