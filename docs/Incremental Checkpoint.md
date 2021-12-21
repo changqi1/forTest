@@ -1,12 +1,13 @@
-# 功能说明
+# Incremental Checkpoint
+## 功能说明
 在大规模稀疏场景中，数据存在冷热倾斜，相邻全量checkpoint中大部分数据都是没有任何变化的。在这个背景下，将稀疏的参数仅保存增量checkpoint，会极大的降低频繁保存checkpoint带来的额外开销。在PS挂掉后能尽量通过一个最近的全量的Checkpoint配合一系列的增量检查点恢复PS上最近一次训练完成的模型参数，减少重复计算。
-# 用户接口
+## 用户接口
 > def tf.train.MonitoredTrainingSession(..., save_incremental_checkpoint_secs=None, ...):
 >     pass
 
 `tf.train.MonitoredTrainingSession`接口增加参数`save_incremental_checkpoint_secs`，默认值为`None`，用户可以设置以秒为单位的`incremental_save checkpoint`的时间，使用增量checkpoint功能
 
-# 代码示例
+## 代码示例
 使用高层API（`tf.train.MonitoredTrainingSession`）
 ```python
 import tensorflow as tf

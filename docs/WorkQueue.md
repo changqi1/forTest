@@ -1,4 +1,5 @@
-# 1.简介
+# WorkQueue
+## 简介
 在大规模分布式异步训练中，如果不同 worker 都读取相同数量的样本，慢节点的训练时间会远长于其他节点，造成长尾现象。随着训练规模的扩大，长尾问题会越来越严重，严重影响了大规模分布式异步训练的整体数据吞吐，拉长了产出模型的时间。
 ​
 
@@ -6,8 +7,8 @@
 ​
 
 WorkQueue统一管理所有 worker 上的工作项，各个 worker 在当前剩余的工作项被消费完后会从同一个 WorkQueue 获得新的工作项作为数据源进行训练，从而让训练更快的 worker 获得更多的工作项进行训练。
-# 2.接口介绍
-## 2.1 WorkQueue类介绍
+## 接口介绍
+### WorkQueue类介绍
 ```python
 class WorkQueue(works, num_epochs=1,
                 shuffle=True,
@@ -25,9 +26,8 @@ class WorkQueue(works, num_epochs=1,
 - `prefix`: 工作项（文件名/表名）的前缀，默认为 None, 即无前缀
 - `num_slices`: 工作项总数量，集群越不稳定，工作项总数量需要越大，通常为 worker 数量的 10 倍以上，默认为 None 即不分片。读文件的时候num_slices无效。
 - `name`: 工作队列的名称
-## 2.2 方法介绍
-## 方法
-### 2.1 take
+## 方法介绍
+### take
 
 method ***WorkQueue.take()*** 
 
@@ -36,7 +36,7 @@ method ***WorkQueue.take()***
 | **返回值类型** | tensorflow.Tensor                            |
 | **参数**       | 无参数                                       |
 
-### 2.2 input_dataset
+### input_dataset
 
 method **WorkQueue.input_dataset()**
 
@@ -45,7 +45,7 @@ method **WorkQueue.input_dataset()**
 | **返回值类型** | tensorflow.data.Dataset                         |
 | **参数**       | 无参数                                          |
 
-### 2.3 input_producer
+### input_producer
 method **WorkQueue.input_producer()**​
 
 | 作用           | 全局工作队列在本地的代理队列，为 Reader 类 Op 使用。 |
@@ -53,7 +53,7 @@ method **WorkQueue.input_producer()**​
 | **返回值类型** | tensorflow.FIFOQueue                                 |
 | **参数**       | 无参数                                               |
 
-### 2.4 add_summary
+### add_summary
 method **WorkQueue.add_summary()**
 
 | 作用           | 调用后将会在 tensorboard 中显示 work queue 的水位信息。 |
@@ -62,8 +62,8 @@ method **WorkQueue.add_summary()**
 | **参数**       | 无参数                                                  |
 
 
-# 3.使用示例
-## 3.1 使用tf.dataset数据源
+## 使用示例
+### 使用tf.dataset数据源
 ```python
 from tensorflow.python.ops.work_queue import WorkQueue
 
@@ -82,7 +82,7 @@ dataset = dataset.prefetch(1)
 我们以在model zoo的WDL中使用WorkQueue为例子来展示如何使用workqueue来动态为worker分配的数据。链接：
 ​
 
-## 3.2 文件数据源
+### 文件数据源
 ```python
 from tensorflow.python.ops.work_queue import WorkQueue
 
@@ -98,7 +98,7 @@ with tf.train.MonitoredTrainingSession() as sess:
 
 
 
-## 3.3 TableRecordReader 数据源
+### TableRecordReader 数据源
 
 ```python
 from tensorflow.python.ops.work_queue import WorkQueue

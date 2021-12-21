@@ -1,6 +1,9 @@
-# 介绍
+# Fused Embedding
+
+## 介绍
+
 DeepRec 及 TensorFlow 原生的 embedding lookup 相关 API，如 safe_fused_embedding_lookup_sparse，会创建比较多的 op，因此在 GPU 上执行时容易出现 kernel launch bound 的问题。因此，fused_embedding 将其中一部分算子融合，达到在 GPU 上加速执行的目的。
-# 使用方法
+## 使用方法
 目前在 `tensorflow/python/feature_column/feature_column_v2.py` 的`EmbeddingColumn` 及`tensorflow/contrib/layers/python/layers/feature_column.py` 的`_EmbeddingColumn` 类中都增加了 `use_fused_lookup` 的选项。因此只要用到这两个类作为 embedding column, 则在 lookup 时都可以选择使用 fused_lookup。使用例子：
 ​
 
@@ -77,9 +80,7 @@ with tf.Session() as sess:
 
 
 他们在内部，实际上都调用 `tensorflow/contrib/layers/python/layers/embedding_ops.py` 中的 `safe_fused_embedding_lookup_sparse` 方法，这个方法功能上和 `safe_embedding_lookup_sparse` 是相同的
-# 注意事项
-
-
+## 注意事项
 
 1. 目前 fused embedding lookup 算子必须是在 Nvidia GPU 上才可执行。相应的 tf.Variable 和 EmbeddingVariable 及其他算子可以在 CPU 上。
 1. 如果使用了 scattered_embedding_column(hash_key 方式查找), 是不支持  fused embedding lookup 的。

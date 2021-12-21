@@ -1,12 +1,13 @@
-# 背景
+# Smart Stage
+## 背景
 在一个通常的TensorFlow训练任务中通常由样本数据的读取，图计算构成，样本数据的读取属于IO bound操作，在整个E2E的耗时占据表较大的百分比，从而拖慢训练任务，同时并不能高效的利用计算资源（CPU、GPU）。DeepRec已经提供了stage 功能，它的思想来源于TensorFlow的StagingArea功能，我们在DeepRec提供了API `tf.staged`，用户通过显示的指定图中哪一部分需要stage，以及在Session创建的时候加入`tf.make_prefetch_hook()`在TensorFlow runtime驱动异步执行，从而提高整张图的执行效率。
 
 由于`tf.staged`需要用户指定stage的边界，一方面会增加使用难度，另一方面会导致stage颗粒度不够精细，难以做到更多op的异步执行。因此我们提出了SmartStage功能。用户不需要对TF Graph有OP级别理解的情况下，就可以使stage发挥最大的性能提升。
 
-# 功能说明
+## 功能说明
 在用户的原图中有stage阶段的前提下，通过开启smart stage功能，自动化的寻优最大可以stage的范围，修改实际物理计算图（不影响Graphdef图），从而提高性能。
 **注意**：该功能的先决条件是，用户的原图中存在至少一个stage阶段
-# 用户接口
+## 用户接口
 `tf.staged`，对输入的 `features` 进行预取，返回预取后的 tensor。
 
 | 参数 | 含义 | 默认值 |
@@ -35,7 +36,7 @@ with tf.train.MonitoredTrainingSession(hooks=hooks, config=sess_config) as sess:
 - `capacity` 更大会消耗更多的内存或显存，同时可能会抢占后续模型训练的 CPU 资源，建议设置为后续计算时间/待异步化时间。可以从 1 开始逐渐向上调整
 - `num_threads` 并不是越大越好，只需要可以让计算和预处理重叠起来即可，数量更大会抢占模型训练的 CPU 资源。计算公式：num_threads >= 预处理时间 / 训练时间，可以从 1 开始向上调整
 - `pai.data.make_prefetch_hook()`一定要加上，否则会hang住
-# 代码示例
+## 代码示例
 ```python
 import tensorflow as tf
 
@@ -64,7 +65,7 @@ with tf.train.MonitoredTrainingSession(config=config,
   for i in range(5):
       print(sess.run([target]))
 ```
-# 性能对比
+## 性能对比
 在modelzoo中的DLRM模型中测试该功能
 机型为Aliyun ECS 实例 ecs.hfg7.8xlarge
 

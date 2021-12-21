@@ -1,4 +1,5 @@
-# 1.介绍
+# AdagradDecay Optimizer
+## 介绍
 AdagradDecay是为支持超大规模训练而提出的一种改进版Adagrad优化器，实践证明，AdagradDecay在推荐、搜索场景下有很好的效果。超大规模模型除自身复杂外，一般隐含另外两个“大”：
 
 1. 用于模型训练的样本很大，一般每次训练的样本量在10亿以上规模；
@@ -43,7 +44,7 @@ $$T$$对于稀疏特征的处理和稠密特征一样，是全局的$$T$$，而�
 打折不会是无限制的，为了避免因打折导致的$$v_t$$过小问题，我们引入了保护措施，即$$v_t$$有下限保护。
 ​
 
-# 2. 接口介绍
+## 接口介绍
 训练时只需要定义`tf.train.AdagradDecayOptimizer`即可，和其他TF原生Optimizer使用方式相同。具体定义如下：
 ```python
 class AdagradDecayOptimizer(optimizer.Optimizer):
@@ -83,7 +84,7 @@ class AdagradDecayOptimizer(optimizer.Optimizer):
 ```
 
 
-# 3. 使用示例
+## 使用示例
 ```python
 import tensorflow as tf
 

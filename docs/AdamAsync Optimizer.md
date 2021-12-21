@@ -1,4 +1,5 @@
-# 1. 介绍
+# AdamAsync Optimizer
+## 介绍
 大规模分布式异步训练时，原生Tensorflow的Adam Optimizer实现存在一些问题，例如分布式训练速度提升不上去，部分PS节点Load异常的高等问题。
 ​
 
@@ -33,7 +34,7 @@ auto alpha = lr() * Eigen::numext::sqrt(T(1) - beta2_power(0)) /
 5. 对于sparse variables，在apply gradient时，做momentum会对降低稀疏特征的更新幅度；
 5. 在apply sparse variables时，我们提供一个开关（默认关闭），打开开关时可以将更新算法由adam换成rmsprop，去掉momentum的滑动平均功能，供不同用户需求使用。
 5. AdamAsync Optimizer的使用方法和AdamOptimizer一样，并且多了一个可配置参数：`apply_saprse_rmpprop`，在apply sparse时是否启动rmsprop算法，默认是关闭的。
-# 2.用户接口
+## 用户接口
 训练时只需要定义`tf.train.AdamAsyncOptimizer`即可，和其他TF原生Optimizer使用方式相同。具体定义如下：
 ```python
 class AdamAsyncOptimizer(optimizer.Optimizer):
@@ -47,7 +48,7 @@ optimizer = tf.train.AdamAsyncOptimizer(
                beta2=0.999,
                epsilon=1e-8)
 ```
-# 3.使用示例
+## 使用示例
 ```python
 import tensorflow as tf
 
@@ -73,5 +74,4 @@ with tf.Session(config=sess_config) as sess:
   print(sess.run([emb, train_op, loss]))
   print(sess.run([emb, train_op, loss]))
 ```
-
 

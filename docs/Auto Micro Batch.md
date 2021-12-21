@@ -1,4 +1,5 @@
-# 功能介绍
+# Auto Micro Batch
+## 功能介绍
 该设计参考了GPipe的设计思路。在Gpipe里面，由于需要支持大模型因此需要引入模型并行，因此需要将大模型跨device进行切割（cut）和放置（place）。在普通的模型并行的方式里面，会存在由于模型切割之后的两部分子图sequential运行从而导致无法充分跑满GPU的问题。因此，在Gpipe和Pipedream这两个论文里，分别引入了Pipeline的思路，同时Pipedream对前后向进行了仔细的调度从而可以保证相应显存可以得以明显的下降从而可以增加batch size。
 
 
@@ -6,7 +7,7 @@
 ​
 
 ![](./img/Auto Micro Batch/img_1.png)
-# 使用方法
+## 使用方法
 AutoMicroBatch功能依赖于用户开启图优化的选项，需要注意的是，如果用户配置batch_size=1024，配置micro_batch_num=2，那么实际等价于用户之前使用batch_size=2048训练的收敛性。如果用户使用前的batch_size=512，使用large_batch_size功能配置micro_batch_num=4，那么在不改变收敛性的情况下，建议用户同时修改batch_size=128，用户接口如下:
 
 
@@ -14,7 +15,7 @@ AutoMicroBatch功能依赖于用户开启图优化的选项，需要注意的是
 config = tf.ConfigProto()
 config.graph_options.optimizer_options.micro_batch_num = 4
 ```
-# 性能对比
+## 性能对比
 
 DeepCTR模型单机版测试效果：
 

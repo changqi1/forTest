@@ -1,3 +1,4 @@
+# NVIDIA TF32
 ## TF32 简介
 TensorFloat-32，是 Nvidia 在 Ampere 架构的 GPU 上推出的专门运用于 TensorCore 的一种计算格式。其与其他常用数据格式的比较：
 ![](./img/NVIDIA TF32/img_1.png)

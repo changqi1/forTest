@@ -1,4 +1,5 @@
-### 1. Bloom Filter介绍
+# 基于Bloom Filter的特征准入
+## Bloom Filter介绍
 布隆过滤器实际上是由一个超长的二进制位数组和一系列的哈希函数组成。二进制位数组初始全部为0，当给定一个待查询的元素时，这个元素会被一系列哈希函数计算映射出一系列的值，所有的值在位数组的偏移量处置为1。
 
 如下图所示：
@@ -14,10 +15,10 @@ Bloom Filter的优点包括：
 
   1. 可能会出现误判（不属于该集合的可能会被误判为属于该集合）
 
-## 2.基于Bloom Filter的特征准入功能
-### 2.1 原理
+## 基于Bloom Filter的特征准入功能
+### 原理
 而我们的特征准入功能是CBF (Counting Bloom Filter)实现的，CBF相比于基础的Bloom filter的不同之处在于它将比特位替换成了counter，因此拥有计数的功能，因此可以判断用于判断是否特征的频次是否已经超过某一阈值。
-### 2.2 参数设置
+### 参数设置
 主要设置的参数有四个：特征的数量 n、 hash函数的数量 k、以及counter的数量m、允许的错误率p。
 
 这四个参数的关系可以参考下表：
@@ -30,7 +31,7 @@ m = -\frac{n\ln_{}{p}}{(\ln_{}{2})^2 } \\
 k = \frac{m}{n}\ln_{}{2}
 $$
 
-### 3.使用方法
+### 使用方法
 ```python
 evconfig = variables.EVConfig( bloom_filter_strategy = variables.BloomFilterStrategy(
                                                           filter_freq=3,

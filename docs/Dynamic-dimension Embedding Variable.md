@@ -1,4 +1,5 @@
-# 1. 背景
+# Dynamic-dimension Embedding Variable
+## 背景
 在典型的推荐场景中，同类特征的出现频次往往**极度不均匀**，以商品的id item_id 这个特征为例，前3%的item_id, 占据了80%的曝光，前20%的item_id,占据了98%的曝光。目前，所有特征的Embeding都会被设定成统一维度，如果Embedding维度过高，低频特征容易过拟合，而且会额外耗费大量内存；如果维度设置过低，那么高频部征特征可能会由于表达不够而欠拟合，最终的效果因此而大打折扣。
 ​
 
@@ -9,7 +10,7 @@ Dynamic Dimension EmbeddingVariable功能依据特征的频度来给Embedding动
 
 <center>Dynamic-dimension Embedding Variable示例图</center>
 
-# 2. 用户接口
+## 用户接口
 下面是使用dynamic-dimension embedding variable接口的用户接口，目前提供了两种接口：
 第一个是底层API `get_dynamic_dimension_embedding_variable`:
 
@@ -76,8 +77,8 @@ def embedding_lookup(
     blocknums=None    
 )
 ```
-# 3.使用示例
-## 3.1 动态维度调整策略
+## 使用示例
+### 动态维度调整策略
 > 以下内容来自于阿里巴巴首页猜你喜欢团队同学的分享
 
 对于每一个特征有两个统计量，分别是累积特征频次freq_acc以及特征在当前时段的出现速度freq_current_speed，freq_acc和freq_current_speed都会被初始化为0，freq_acc平时不更新，会在特定的step根据一定的规则进行更新，而freq_current_speed则会随着特征被访问而更新，特征每被访问一次freq_current_speed就会+1，然后会在特定的step被置为0。
