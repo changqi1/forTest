@@ -26,11 +26,9 @@ Bloom Filter的优点包括：
 
 另外，当用户给定错误率p时以及特征数量n时，m和k可以通过如下计算得到：
 $$
-\begin{align}
 m = -\frac{n\ln_{}{p}}{(\ln_{}{2})^2 } \\
 \\
 k = \frac{m}{n}\ln_{}{2}
-\end{align}
 $$
 
 ### 使用方法
