@@ -8,7 +8,7 @@
 1. 构造若干个小的Embedding table
 1. 每个对应的table对应一个hash function， 这些hash function需要互补，即对于每一个id，他对应的hash值集合是唯一的，与其他任何一个id都不完全相同。例如当有两个embedding table的时候，使用Quotient-Reminder可以保证每个key都有唯一的hash集合，具体如下图：
 
-![img_1.png](img/Multi-Hash Variable/img_1.png)
+![img_1.png](img/Multi-HashVariable/img_1.png)
 
 3. 根据一定的策略将从多个table里取出来的embedding组合成最终的emebdding，例如add、multiply以及concat。
 ## Multi-Hash Variable

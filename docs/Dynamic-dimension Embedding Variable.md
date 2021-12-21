@@ -6,7 +6,7 @@
 Dynamic Dimension EmbeddingVariable功能依据特征的频度来给Embedding动态分配维度；高频高维度，低频低维度； 高频特征可以被给到很高的维度而不担心欠拟合问题， 而低频特征因为给定低维度embedding，一定程度上起到了正则的作用，既缓解了过拟合的问题，而且可以极大程度节省内存(低频长尾特征的数量占据绝对优势)
 ​
 
-![img_1.png](img/Dynamic-dimension Embedding Variable/img_1.png "Dynamic-dimension Embedding Variable示例图")
+![img_1.png](img/Dynamic-dimensionEmbeddingVariable/img_1.png "Dynamic-dimension Embedding Variable示例图")
 
 <center>Dynamic-dimension Embedding Variable示例图</center>
 
