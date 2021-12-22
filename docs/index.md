@@ -15,7 +15,7 @@ AdamAsync-Optimizer
 AdagradDecay-Optimizer
 Embedding-Variable
 Multi-Hash-Variable
-FeatureEviction
+Feature-Eviction
 Smart-Stage
 TensorPoolAllocator
 NVIDIA-TF32
