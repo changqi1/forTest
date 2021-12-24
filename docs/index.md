@@ -19,4 +19,5 @@ Feature-Eviction
 Smart-Stage
 TensorPoolAllocator
 NVIDIA-TF32
+oneDNN
 ```
